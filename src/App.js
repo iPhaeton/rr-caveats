@@ -1,12 +1,16 @@
 import React, { Fragment } from 'react';
 import './App.css';
 import InputsList from './components/InputsForm/InputsForm';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <Fragment>
-      <InputsList />
-    </Fragment>
+    <Provider store={store}>
+      <Fragment>
+        <InputsList />
+      </Fragment>
+    </Provider>
   );
 }
 
