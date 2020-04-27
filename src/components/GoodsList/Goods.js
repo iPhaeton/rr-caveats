@@ -1,7 +1,7 @@
-import React, { useCallback, Fragment } from 'react';
+import React, { useCallback, Fragment, useMemo } from 'react';
 import { setGoods } from './actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSortedGoods, getSortedGoodsMemoized } from './selectors';
+import { getSortedGoods, getSortedGoodsMemoized, getSortedGoodsMemoizedCurried } from './selectors';
 import GoodsList from './GoodsList';
 
 const fetchGoods = () => Promise.resolve([
@@ -19,7 +19,17 @@ const Goods = () => {
         dispatch(setGoods(goods));
     }, []);
 
+    // Curried correct
+    // const selector = useMemo(() => getSortedGoodsMemoizedCurried(), []);
+    // const goods = useSelector(selector);
+
+    // Curried incorrect
+    // const goods = useSelector(getSortedGoodsMemoizedCurried());
+
+    // Memoized
     const goods = useSelector(getSortedGoodsMemoized);
+
+    // Unmemeized
     // const goods = useSelector(getSortedGoods);
 
     console.log('Goods');

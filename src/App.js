@@ -11,8 +11,8 @@ function App() {
     <Provider store={store}>
       <Fragment>
         {/* <InputsList /> */}
-        {/* <GoodsList /> */}
-        <SignInForm />
+        <GoodsList />
+        {/* <SignInForm /> */}
       </Fragment>
     </Provider>
   );
