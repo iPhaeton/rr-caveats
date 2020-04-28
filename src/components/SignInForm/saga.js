@@ -1,4 +1,4 @@
-import { takeEvery, race, take, put, all } from 'redux-saga/effects';
+import { takeEvery, race, take, put, all, delay, fork, spawn } from 'redux-saga/effects';
 import { START_SIGNIN, SIGN_IN, CANCEL_SIGNIN } from './constants';
 import { setError, setVisible, setValue, cancelSignIn } from './actions';
 
@@ -12,8 +12,18 @@ const postSignIn = (body) => {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
+function* endlessFlow() {
+    let count = 0
+    while (true) {
+        yield delay(1000);
+        console.log(++count);
+    }
+}
 
 function* handleSignInFlow() {
+    // yield fork(endlessFlow);
+    // yield spawn(endlessFlow);
+
     yield put(setValue(null));
     yield put(setError(null));
     yield put(setVisible(true));
@@ -47,6 +57,11 @@ function* handleSignInFlow() {
 
 export function* signInFlow() {
     yield takeEvery(START_SIGNIN, handleSignInFlow);
+
+    // while (true) {
+    //     const action = yield take(START_SIGNIN);
+    //     yield handleSignInFlow(action);
+    // }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
