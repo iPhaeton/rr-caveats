@@ -10,9 +10,9 @@ function App() {
   return (
     <Provider store={store}>
       <Fragment>
-        {/* <InputsList /> */}
+        <InputsList />
         {/* <GoodsList /> */}
-        <SignInForm />
+        {/* <SignInForm /> */}
       </Fragment>
     </Provider>
   );
